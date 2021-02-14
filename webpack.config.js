@@ -32,23 +32,12 @@ module.exports = {
     mode: process.env.NODE_ENV,
 
     devServer: {
-        host: 'localhost',
-        port: 8080,
-        // "Content not from Webpack is served from...":
-        contentBase: path.join(__dirname, '/'), 
-        // enable HMR on the devServer
-        hot: true,
-        // fallback to root for other urls
-        historyApiFallback: true,
-        inline: true,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        proxy: {
-          '/': {
-             target: 'http://localhost:3000/',
-            secure: false,
-           },
-        },
+      publicPath: '/dist',
+      proxy: {
+        '/': 'http://localhost:3000',
       },
+      hot: true,
+    },
       resolve: {
         extensions: ['.js', '.jsx'],
       },

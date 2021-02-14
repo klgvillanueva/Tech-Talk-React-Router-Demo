@@ -16,6 +16,11 @@ app.use((req, res, next) => {
 /*** MAIN PAGE ***/
 app.use(express.static(path.resolve(__dirname, './public')));
 
+/* to handle React Router */
+app.get('/*', 
+  (req, res) => {res.sendFile(path.join(__dirname, '../public/index.html'))}
+);
+
 // catch all
 app.use('*', (req, res, next) => {
   return res.status(404).send('Sorry, wrong page! Try again! 🤪');
